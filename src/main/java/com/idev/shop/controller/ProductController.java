@@ -34,6 +34,12 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
+    @GetMapping("/{id}")
+    @Operation(summary = "Xem chi tiết một sản phẩm")
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
+        return ResponseEntity.ok(new ProductDTO());
+    }
+
     @PostMapping
     @Operation(summary = "Thêm một sản phẩm mới", description = "Thêm một loại rau củ quả mới vào kho hàng")
     public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) {
@@ -51,5 +57,11 @@ public class ProductController {
     @Operation(summary = "Xóa sản phẩm", description = "Xóa sản phẩm khỏi danh mục kinh doanh")
     public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
         return ResponseEntity.ok("Đã xóa sản phẩm có ID: " + id);
+    }
+
+    @PostMapping("/{id}/reviews")
+    @Operation(summary = "Đánh giá sản phẩm")
+    public ResponseEntity<String> addReview(@PathVariable Long id) {
+        return ResponseEntity.ok("Đã lưu đánh giá cho sản phẩm " + id);
     }
 }

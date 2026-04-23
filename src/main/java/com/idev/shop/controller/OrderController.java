@@ -25,4 +25,17 @@ public class OrderController {
     public ResponseEntity<List<OrderDTO>> getAllOrders() {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Xem chi tiết một đơn hàng")
+    public ResponseEntity<OrderDTO> getOrderById(@PathVariable Long id) {
+        // Trả về một DTO rỗng làm mẫu
+        return ResponseEntity.ok(new OrderDTO());
+    }
+
+    @PostMapping("/{id}/payment")
+    @Operation(summary = "Thanh toán đơn hàng (Mock)")
+    public ResponseEntity<String> processPayment(@PathVariable Long id) {
+        return ResponseEntity.ok("Thanh toán thành công cho đơn " + id);
+    }
 }
